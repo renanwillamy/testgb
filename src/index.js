@@ -1,22 +1,19 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { useState, useEffect } from 'react'
 
-import styles from './styles.css'
+const ExampleComponent = () => {
+  const [count, setCount] = useState(0)
+  const [resultado, setResultado] = useState(0)
 
-export default class ExampleComponent extends Component {
-  static propTypes = {
-    text: PropTypes.string
-  }
+  useEffect(() => {
+    setResultado(count * 2)
+  }, [count])
 
-  render() {
-    const {
-      text
-    } = this.props
-
-    return (
-      <div className={styles.test}>
-        Example Component: {text}
-      </div>
-    )
-  }
+  return (
+    <div>
+      <p>A expressao: {count} * 2 = {resultado}</p>
+      <button onClick={() => setCount(count + 1)}>+1</button>
+    </div>
+  )
 }
+
+export default ExampleComponent
